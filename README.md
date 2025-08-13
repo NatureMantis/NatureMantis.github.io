@@ -1,2 +1,2 @@
 # NatureMantis.github.io
-this is me
+This is a practice site
