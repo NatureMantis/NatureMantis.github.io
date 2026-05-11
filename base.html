@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gento-simul</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside id="inputContainer">
+        <p id="equation">p2+2pq+q2</p>
+        <section id="geneInputContainer">
+            <p class="geneInputTxt" class="geneITOP">B =</p>
+            <input type="number" id="homoDinput" class="geneInput" value="0">
+            <p class="geneInputTxt">b =</p>
+            <input type="number" id="homoRinput" class="geneInput" value="0">
+        </section>
+        <button class="geneButton" id="checkButton">Check</button>
+        <button class="geneButton" id="formatButton">Format</button>
+        <section id="colorInputContainer">
+            <p class="geneInputTxt">BB =</p>
+            <input type="color" value="#00EE00" id="homoDcolor" class="geneInput">
+            <p class="geneInputTxt">Bb =</p>
+            <input type="color" value="#EE0000" id="heteroColor" class="geneInput">
+            <p class="geneInputTxt">bb =</p>
+            <input type="color" value="#0000EE" id="homoRcolor" class="geneInput">
+        </section>
+        <section id="bottomSection">
+            <select >
+                <option>Times New Roman</option>
+                <option>Poppins</option>
+                <option>Comic Sans</option>
+                <option>Arial</option>
+            </select>
+            <p>Dark Mode</p>
+            <input type="checkbox">
+        </section>
+    </aside>
+    <section id="simulationContainer">
+        <div id="BB" class="geneVis"></div>
+        <div id="Bb" class="geneVis"></div>
+        <div id="bb" class="geneVis"></div>
+    </section>
+</body>
+<script src="base.js"></script>
+</html>
