@@ -3,6 +3,10 @@ const HMRinput = document.getElementById('homoRinput');
 const checkButton = document.getElementById('checkButton');
 const formatButton = document.getElementById('formatButton');
 const geneConatiner = document.getElementById('simulationContainer');
+const HMDCol = document.getElementById('homoDcolor');
+const HTCol = document.getElementById('heteroColor');
+const HMRCol = document.getElementById('homoRcolor');
+let geneBlobs = document.getElementsByClassName('geneVis');
 
 let corArray = []
 let newHMDperc = '';
@@ -109,7 +113,7 @@ function runDataSimulation() {
         }else if (i < newHMDperc + newHTperc) {
             geneConatiner.innerHTML = baseGC + `<div class="geneVis Bb" style="left:${corX}%; top:${corY}%;"></div>`
             corArray[i-1].push(2)
-        } else if (i < 100) {
+        } else if (i <= 100) {
             geneConatiner.innerHTML = baseGC + `<div class="geneVis bb" style="left:${corX}%; top:${corY}%;"></div>`
             corArray[i-1].push(3)
         }
@@ -119,54 +123,73 @@ function runDataSimulation() {
     corArray.forEach((item) => {
         console.log(item)
     }) 
-
-    setTimeout(function(){
-        doMove()
-    }, 200)
-}
-
-function doMove() {
-    // corArray.forEach((item) => {
-    //     let doesMove = Math.floor(Math.random()*2)
-
-    //     if (doesMove == 1) {
-    //         let Xmove = Math.floor(Math.random()*10-5)
-    //         let Ymove = Math.floor(Math.random()*10-5)
-
-    //         let newX = corArray[item][0].value + Xmove
-    //         let newY = corArray[item][1].value + Ymove
-
-    //         corArray[item][0] = newX
-    //         corArray[item][1] = newY
-
-    //         geneBlobs[item].style.left = newX
-    //         geneBlobs[item].style.left = newY
-    //     }
-    // })
-
     const geneBlobs = document.getElementsByClassName('geneVis');
 
-    setInterval( function(){
-        document.querySelectorAll('geneBlobs').forEach((item) => {
-            let doesMove = Math.floor(Math.random()*2)
-
-            if (doesMove == 1) {
-                let Xmove = Math.floor(Math.random()*10-5)
-                let Ymove = Math.floor(Math.random()*10-5)
-    
-                let newX = corArray[item][0].value + Xmove
-                let newY = corArray[item][1].value + Ymove
-    
-                geneBlobs[item].style.left = newX
-                geneBlobs[item].style.left = newY
-                console.log('moved')
-            }
-        })
-    }, 500)
-
+    // setTimeout(function(){
+    //     doMove()
+    // }, 200)
 }
 
+// function doMove() {
+//     // corArray.forEach((item) => {
+//     //     let doesMove = Math.floor(Math.random()*2)
+
+//     //     if (doesMove == 1) {
+//     //         let Xmove = Math.floor(Math.random()*10-5)
+//     //         let Ymove = Math.floor(Math.random()*10-5)
+
+//     //         let newX = corArray[item][0].value + Xmove
+//     //         let newY = corArray[item][1].value + Ymove
+
+//     //         corArray[item][0] = newX
+//     //         corArray[item][1] = newY
+
+//     //         geneBlobs[item].style.left = newX
+//     //         geneBlobs[item].style.left = newY
+//     //     }
+//     // })
+
+
+//     setInterval( function(){
+//         document.querySelectorAll('geneBlobs').forEach((item) => {
+//             let doesMove = Math.floor(Math.random()*2)
+
+//             if (doesMove == 1) {
+//                 let Xmove = Math.floor(Math.random()*10-5)
+//                 let Ymove = Math.floor(Math.random()*10-5)
+    
+//                 let newX = corArray[item][0].value + Xmove
+//                 let newY = corArray[item][1].value + Ymove
+    
+//                 geneBlobs[item].style.left = newX
+//                 geneBlobs[item].style.left = newY
+//                 console.log('moved')
+//             }
+//         })
+//     }, 500)
+
+// }
+
+function changeColor() {
+    console.log('coloring')
+    let HMDCC = HMDCol.value;
+    let HTCC = HTCol.value;
+    let HMRCC = HMRCol.value;
+
+    corArray.forEach((item, number) => {
+        let blobType = item[2];
+        if (blobType == 1) {
+            geneBlobs[number].style.backgroundColor = HMDCC;
+        }else if (blobType == 2) {
+            geneBlobs[number].style.backgroundColor = HTCC;
+        } else if (blobType == 3) {
+            geneBlobs[number].style.backgroundColor = HMRCC;
+        }
+    });
+}
 
 checkButton.addEventListener('click', doCheckData);
 formatButton.addEventListener('click', doFormatData);
-// document.addEventListener('fullscreenchange', )
+HMDCol.addEventListener('change', changeColor);
+HTCol.addEventListener('change', changeColor);
+HMRCol.addEventListener('change', changeColor);
