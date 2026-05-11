@@ -1,0 +1,68 @@
+body {
+    background-color: lightgray;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+#inputContainer {
+    border: 1px red solid;
+    padding: 30px;
+    height: 50vw;
+}
+
+#geneInputContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#equation {
+    margin-bottom: 5vw;
+}
+
+.geneInput {
+    margin-right: 10vw;
+    width: 5vw;
+    height: 2vw;
+}
+
+.geneButton {
+    width: 6vw;
+    margin: 0.5vw;
+    margin-bottom: 5vw;
+}
+
+#colorInputContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 15vw;
+}
+
+#simulationContainer {
+    border: 1px red solid;
+}
+
+#bottomSection {
+    display: grid;
+    grid-template-columns: 3fr 3fr 1fr;
+}
+
+.geneVis {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background-color: blue;
+    border-radius: 5px;
+    transition: ease 1s;
+}
+
+.Bb {
+    background-color: red;
+}
+
+.bb {
+    background-color: blue;
+}
+
+.BB {
+    background-color: green;
+}
