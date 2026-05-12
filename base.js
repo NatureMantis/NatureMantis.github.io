@@ -200,7 +200,6 @@ function viewOptions() {
 function doMovement() {
     isMoving = !isMoving
     console.log('changed movement')
-    doMove()
 }
 
 checkButton.addEventListener('click', doCheckData);
