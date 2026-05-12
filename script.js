@@ -7,6 +7,11 @@ const HMDCol = document.getElementById('homoDcolor');
 const HTCol = document.getElementById('heteroColor');
 const HMRCol = document.getElementById('homoRcolor');
 let geneBlobs = document.getElementsByClassName('geneVis');
+const openSettings = document.getElementById('settingOpen');
+const settingsPage = document.getElementById('hiddenSettings');
+const stopMovementBtn = document.getElementById('doMovement');
+
+let isMoving = true;
 
 let corArray = []
 let newHMDperc = '';
@@ -131,56 +136,41 @@ function runDataSimulation() {
 }
 
 function doMove() {
-    // corArray.forEach((item) => {
-    //     let doesMove = Math.floor(Math.random()*2)
-
-    //     if (doesMove == 1) {
-    //         let Xmove = Math.floor(Math.random()*10-5)
-    //         let Ymove = Math.floor(Math.random()*10-5)
-
-    //         let newX = corArray[item][0].value + Xmove
-    //         let newY = corArray[item][1].value + Ymove
-
-    //         corArray[item][0] = newX
-    //         corArray[item][1] = newY
-
-    //         geneBlobs[item].style.left = newX
-    //         geneBlobs[item].style.left = newY
-    //     }
-    // })
-
-
+    
     setInterval( function(){
-        corArray.forEach((item, number) => {
-            let doesMove = Math.floor(Math.random()*(Math.floor(Math.random()*1.5)+1))
+        if (isMoving == false) {}
+        else {
+            corArray.forEach((item, number) => {
+                let doesMove = Math.floor(Math.random()*(Math.floor(Math.random()*1.5)+1))
 
-            let Ymove = Math.floor(Math.random()*10-5)
-            let Xmove = Math.floor(Math.random()*10-5)
+                let Ymove = Math.floor(Math.random()*10-4.5)
+                let Xmove = Math.floor(Math.random()*10-4.5)
 
-            if (doesMove == 1) {
-                if(corArray[number][1] + Ymove < 1) {
-                    Ymove = Math.floor(Math.random()*5)
-                } else if(corArray[number][1] + Ymove > 94) {
-                    Ymove = Math.floor(Math.random()*5-5)
+                if (doesMove == 1) {
+                    if(corArray[number][1] + Ymove < 1) {
+                        Ymove = Math.floor(Math.random()*5)
+                    } else if(corArray[number][1] + Ymove > 94) {
+                        Ymove = Math.floor(Math.random()*5-5)
+                    }
+
+                    if(corArray[number][0] + Xmove < 25) {
+                        Xmove = Math.floor(Math.random()*5)
+                    } else if(corArray[number][0] + Xmove > 99) {
+                        Xmove = Math.floor(Math.random()*5-5)
+                    }
+        
+                    let newX = corArray[number][0] + Xmove
+                    let newY = corArray[number][1] + Ymove
+        
+                    geneBlobs[number].style.left = newX + '%'
+                    geneBlobs[number].style.top = newY + '%'
+                    console.log('moved')
+
+                    corArray[number][0] = newX;
+                    corArray[number][1] = newY;
                 }
-
-                if(corArray[number][0] + Ymove < 25) {
-                    Xmove = Math.floor(Math.random()*5)
-                } else if(corArray[number][0] + Ymove > 97) {
-                    Xmove = Math.floor(Math.random()*5-5)
-                }
-    
-                let newX = corArray[number][0] + Xmove
-                let newY = corArray[number][1] + Ymove
-    
-                geneBlobs[number].style.left = newX + '%'
-                geneBlobs[number].style.top = newY + '%'
-                console.log('moved')
-
-                corArray[number][0] = newX;
-                corArray[number][1] = newY
-            }
-        })
+            })
+        }
     }, 500)
 
 }
@@ -203,8 +193,20 @@ function changeColor() {
     });
 }
 
+function viewOptions() {
+    settingsPage.style.visibility = 'visible';
+}
+
+function doMovement() {
+    isMoving = !isMoving
+    console.log('changed movement')
+    doMove()
+}
+
 checkButton.addEventListener('click', doCheckData);
 formatButton.addEventListener('click', doFormatData);
 HMDCol.addEventListener('change', changeColor);
 HTCol.addEventListener('change', changeColor);
 HMRCol.addEventListener('change', changeColor);
+openSettings.addEventListener('click', viewOptions);
+stopMovementBtn.addEventListener('click', doMovement);
