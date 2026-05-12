@@ -118,57 +118,72 @@ function runDataSimulation() {
             corArray[i-1].push(3)
         }
 
+        changeColor()
     }
 
     corArray.forEach((item) => {
         console.log(item)
     }) 
-    const geneBlobs = document.getElementsByClassName('geneVis');
 
-    // setTimeout(function(){
-    //     doMove()
-    // }, 200)
+    setTimeout(function(){
+        doMove()
+    }, 200)
 }
 
-// function doMove() {
-//     // corArray.forEach((item) => {
-//     //     let doesMove = Math.floor(Math.random()*2)
+function doMove() {
+    // corArray.forEach((item) => {
+    //     let doesMove = Math.floor(Math.random()*2)
 
-//     //     if (doesMove == 1) {
-//     //         let Xmove = Math.floor(Math.random()*10-5)
-//     //         let Ymove = Math.floor(Math.random()*10-5)
+    //     if (doesMove == 1) {
+    //         let Xmove = Math.floor(Math.random()*10-5)
+    //         let Ymove = Math.floor(Math.random()*10-5)
 
-//     //         let newX = corArray[item][0].value + Xmove
-//     //         let newY = corArray[item][1].value + Ymove
+    //         let newX = corArray[item][0].value + Xmove
+    //         let newY = corArray[item][1].value + Ymove
 
-//     //         corArray[item][0] = newX
-//     //         corArray[item][1] = newY
+    //         corArray[item][0] = newX
+    //         corArray[item][1] = newY
 
-//     //         geneBlobs[item].style.left = newX
-//     //         geneBlobs[item].style.left = newY
-//     //     }
-//     // })
+    //         geneBlobs[item].style.left = newX
+    //         geneBlobs[item].style.left = newY
+    //     }
+    // })
 
 
-//     setInterval( function(){
-//         document.querySelectorAll('geneBlobs').forEach((item) => {
-//             let doesMove = Math.floor(Math.random()*2)
+    setInterval( function(){
+        corArray.forEach((item, number) => {
+            let doesMove = Math.floor(Math.random()*(Math.floor(Math.random()*1.5)+1))
 
-//             if (doesMove == 1) {
-//                 let Xmove = Math.floor(Math.random()*10-5)
-//                 let Ymove = Math.floor(Math.random()*10-5)
+            let Ymove = Math.floor(Math.random()*10-5)
+            let Xmove = Math.floor(Math.random()*10-5)
+
+            if (doesMove == 1) {
+                if(corArray[number][1] + Ymove < 1) {
+                    Ymove = Math.floor(Math.random()*5)
+                } else if(corArray[number][1] + Ymove > 94) {
+                    Ymove = Math.floor(Math.random()*5-5)
+                }
+
+                if(corArray[number][0] + Ymove < 25) {
+                    Xmove = Math.floor(Math.random()*5)
+                } else if(corArray[number][0] + Ymove > 97) {
+                    Xmove = Math.floor(Math.random()*5-5)
+                }
     
-//                 let newX = corArray[item][0].value + Xmove
-//                 let newY = corArray[item][1].value + Ymove
+                let newX = corArray[number][0] + Xmove
+                let newY = corArray[number][1] + Ymove
     
-//                 geneBlobs[item].style.left = newX
-//                 geneBlobs[item].style.left = newY
-//                 console.log('moved')
-//             }
-//         })
-//     }, 500)
+                geneBlobs[number].style.left = newX + '%'
+                geneBlobs[number].style.top = newY + '%'
+                console.log('moved')
 
-// }
+                corArray[number][0] = newX;
+                corArray[number][1] = newY
+            }
+        })
+    }, 500)
+
+}
 
 function changeColor() {
     console.log('coloring')
