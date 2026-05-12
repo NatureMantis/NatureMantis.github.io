@@ -66,3 +66,7 @@ body {
 .BB {
     background-color: green;
 }
+
+#hiddenSettings {
+    visibility: hidden;
+}
