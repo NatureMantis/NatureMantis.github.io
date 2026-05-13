@@ -16,7 +16,7 @@ const HTdisplay = document.getElementById('HTdisplay');
 
 let isMoving = true;
 let isSettingVisible = false;
-
+// Check
 let corArray = []
 let newHMDperc = '';
 let newHMRperc = '';
