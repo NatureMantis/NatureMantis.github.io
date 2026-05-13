@@ -209,6 +209,11 @@ function viewOptions() {
 
 function doMovement() {
     isMoving = !isMoving
+    if (isMoving == true) {
+        stopMovementBtn.textContent = 'Stop Movement';
+    } else {
+        stopMovementBtn.textContent = 'Start Movement';
+    }
     console.log('changed movement')
 }
 
