@@ -3,42 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gento-simul</title>
+    <title>Hardy Weinburg SImulation</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <aside id="inputContainer">
-        <p id="equation">p2+2pq+q2</p>
-        <section id="geneInputContainer">
-            <p class="geneInputTxt" class="geneITOP">B =</p>
-            <input type="number" id="homoDinput" class="geneInput" value="0">
-            <p class="geneInputTxt">b =</p>
-            <input type="number" id="homoRinput" class="geneInput" value="0">
+        <header>
+            <h1 id="title">Hardy Weinburg Simulation</h1>
+            <p id="equation">p<sup>2</sup> + 2pq + q<sup>2</sup> = 1</p>
+        </header>
+
+        <section class="control-card">
+            <label class="section-label">Allele Frequency</label>
+            <div id="geneInputContainer">
+                <div class="input-wrapper">
+                    <span class="geneInputTxt">B</span>
+                    <input type="number" id="homoDinput" class="geneInput" value="0">
+                </div>
+                <div class="input-wrapper">
+                    <span class="geneInputTxt">b</span>
+                    <input type="number" id="homoRinput" class="geneInput" value="0">
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button class="geneButton" id="checkButton">Check</button>
+                <button class="geneButton" id="formatButton">Format</button>
+            </div>
         </section>
-        <button class="geneButton" id="checkButton">Check</button>
-        <button class="geneButton" id="formatButton">Format</button>
-        <section id="colorInputContainer">
-            <p class="geneInputTxt">BB =</p>
-            <input type="color" value="#00EE00" id="homoDcolor" class="geneInput">
-            <p class="geneInputTxt">Bb =</p>
-            <input type="color" value="#EE0000" id="heteroColor" class="geneInput">
-            <p class="geneInputTxt">bb =</p>
-            <input type="color" value="#0000EE" id="homoRcolor" class="geneInput">
+
+        <section class="control-card">
+            <label class="section-label">Phenotype Visualization</label>
+            <div id="colorInputContainer">
+                <div class="color-wrapper">
+                    <span class="geneInputTxt">BB</span>
+                    <input type="color" value="#00EE00" id="homoDcolor" class="geneInput">
+                </div>
+                <div class="color-wrapper">
+                    <span class="geneInputTxt">Bb</span>
+                    <input type="color" value="#EE0000" id="heteroColor" class="geneInput">
+                </div>
+                <div class="color-wrapper">
+                    <span class="geneInputTxt">bb</span>
+                    <input type="color" value="#0000EE" id="homoRcolor" class="geneInput">
+                </div>
+            </div>
         </section>
+
         <section id="bottomSection">
-                <button id="settingOpen">Settings & Information</button>
-                <section id="hiddenSettings">
-                    <button id="doMovement">Stop Movement</button>
-                    <p>Dark Mode</p>
+            <button id="settingOpen">Settings & Info</button>
+            <section id="hiddenSettings">
+                <label class="section-label">Simulation Controls</label>
+                <button id="doMovement">Stop/Start Movement</button>
+                <div class="setting-row">
+                    <span>Dark Mode</span>
                     <input type="checkbox">
-                    <p id="HMDdisplay">HMD: %</p>
-                    <p id="HMRdisplay">HMR: %</p>
-                    <p id="HTdisplay">HT: %</p>
-                </section>
+                </div>
+                <div class="stats-box">
+                    <p id="HMDdisplay">Homozygous Dominant: --%</p>
+                    <p id="HTdisplay">Heterozygous: --%</p>
+                    <p id="HMRdisplay">Homozygous Recessive: --%</p>
+                </div>
+            </section>
         </section>
     </aside>
+
     <section id="simulationContainer">
-    </section>
+        </section>
 </body>
 <script src="base.js"></script>
 </html>
