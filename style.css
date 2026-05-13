@@ -1,80 +1,180 @@
+/* CSS for layout and visual style only */
+
+:root {
+    --bg-color: #f0f2f5;
+    --sidebar-bg: #ffffff;
+    --accent-blue: #2c3e50;
+    --btn-color: #34495e;
+    --border-soft: #dcdde1;
+    --text-main: #2f3640;
+}
+
 body {
-    background-color: lightgray;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, sans-serif;
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    margin: none;
+    grid-template-columns: 1fr 3fr; /* Proportion preserved */
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
 }
 
 #inputContainer {
-    border: 1px red solid;
-    padding: 30px;
-    height: 50vw;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-soft);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    z-index: 10;
 }
 
-#geneInputContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+#title {
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 #equation {
-    margin-bottom: 5vw;
+    font-family: 'Courier New', Courier, monospace;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    border: 1px solid var(--border-soft);
+    margin-top: 10px;
+}
+
+.control-card {
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.section-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #7f8c8d;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+/* Input alignments */
+#geneInputContainer, #colorInputContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.input-wrapper, .color-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .geneInput {
-    margin-right: 10vw;
-    width: 5vw;
-    height: 2vw;
+    width: 100%;
+    height: 28px;
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    padding: 2px 5px;
 }
 
-.geneButton {
-    width: 6vw;
-    margin: 0.5vw;
-    margin-bottom: 5vw;
+input[type="color"] {
+    padding: 0;
+    border: none;
+    cursor: pointer;
 }
 
-#colorInputContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-bottom: 15vw;
+/* Button Styling */
+.action-buttons {
+    display: flex;
+    gap: 10px;
 }
 
+.geneButton, #settingOpen, #doMovement {
+    background-color: var(--btn-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: opacity 0.2s;
+    width: 100%;
+}
+
+.geneButton:hover, #settingOpen:hover {
+    opacity: 0.9;
+}
+
+/* Simulation Area */
 #simulationContainer {
-    border: 1px red solid;
+    position: relative;
+    background-color: #ffffff;
+    margin: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+    overflow: hidden; /* Contains moving objects */
 }
 
-#bottomSection {
-    display: grid;
-    grid-template-columns: 3fr 3fr 1fr;
-}
-
+/* Genotype visual size - STRICTLY PRESERVED */
 .geneVis {
     position: absolute;
     height: 15px;
     width: 15px;
-    background-color: blue;
-    border-radius: 5px;
+    border-radius: 3px;
     transition: ease 1s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.Bb {
-    background-color: red;
-}
-
-.bb {
-    background-color: blue;
-}
-
-.BB {
-    background-color: green;
+/* Settings and Bottom UI */
+#bottomSection {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #hiddenSettings {
     visibility: hidden;
-    position: absolute;
-    width: 25%;
-    height: 80%;
-    background-color: rgb(192, 192, 192);
-    border: 1px red solid;
-    top: 0%;
-    left: 0%
+    position: fixed; /* Overlay look */
+    bottom: 80px;
+    left: 20px;
+    width: 240px;
+    background: white;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+.stats-box {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-soft);
+}
+
+.stats-box p {
+    margin: 5px 0;
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--accent-blue);
 }
