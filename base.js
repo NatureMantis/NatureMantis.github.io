@@ -10,8 +10,12 @@ let geneBlobs = document.getElementsByClassName('geneVis');
 const openSettings = document.getElementById('settingOpen');
 const settingsPage = document.getElementById('hiddenSettings');
 const stopMovementBtn = document.getElementById('doMovement');
+const HMDdisplay = document.getElementById('HMDdisplay');
+const HMRdisplay = document.getElementById('HMRdisplay');
+const HTdisplay = document.getElementById('HTdisplay');
 
 let isMoving = true;
+let isSettingVisible = false;
 
 let corArray = []
 let newHMDperc = '';
@@ -91,6 +95,9 @@ function runDataSimulation() {
     }
 
     console.log(`HMD: ${HMDperc} / ${newHMDperc} | HT: ${HTperc} / ${newHTperc}| HMR: ${HMRperc} / ${newHMRperc}`);
+    HMDdisplay.textContent = `HMD: ${HMDperc.toFixed(3)}%`;
+    HMRdisplay.textContent = `HMR: ${HMRperc.toFixed(3)}%`;
+    HTdisplay.textContent = `HT: ${HTperc.toFixed(3)}%`;
 
     //---------------------------------------------------------------------------------------//
 
@@ -194,7 +201,12 @@ function changeColor() {
 }
 
 function viewOptions() {
-    settingsPage.style.visibility = 'visible';
+    isSettingVisible = !isSettingVisible;
+    if (isSettingVisible == true) {
+        settingsPage.style.visibility = 'visible';
+    } else {
+        settingsPage.style.visibility = 'hidden';
+    }
 }
 
 function doMovement() {
