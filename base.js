@@ -28,20 +28,18 @@ function doCheckData() {
     let GeneValTotal =HMRVal + HMDVal;
 
     if ((GeneValTotal) == 100) {
-        checkButton.style.color = 'green';
-        checkButton.style.border = '1px green solid';
+        checkButton.style.backgroundColor = 'green';
         setTimeout(function(){
-            checkButton.style.color = 'black';
-            checkButton.style.border = ' 1px black solid';
+            checkButton.style.backgroundColor = '#34495e';
             console.log('Check Complete')
         }, 1000);
         //runSimulation
         runDataSimulation()
     }
     else {
-        checkButton.style.color = 'red';
+        checkButton.style.backgroundColor = 'red';
         setTimeout(function(){
-            checkButton.style.color = 'black';
+            checkButton.style.backgroundColor = '#34495e';
             console.log('Check Failed')
             // Need text change in here
         }, 1000);
@@ -95,9 +93,9 @@ function runDataSimulation() {
     }
 
     console.log(`HMD: ${HMDperc} / ${newHMDperc} | HT: ${HTperc} / ${newHTperc}| HMR: ${HMRperc} / ${newHMRperc}`);
-    HMDdisplay.textContent = `HMD: ${HMDperc.toFixed(3)}%`;
-    HMRdisplay.textContent = `HMR: ${HMRperc.toFixed(3)}%`;
-    HTdisplay.textContent = `HT: ${HTperc.toFixed(3)}%`;
+    HMDdisplay.textContent = `Homozygous Dominant: ${HMDperc.toFixed(2)}%`;
+    HMRdisplay.textContent = `Homozygous Recessive: ${HMRperc.toFixed(2)}%`;
+    HTdisplay.textContent = `Heterozygous: ${HTperc.toFixed(2)}%`;
 
     //---------------------------------------------------------------------------------------//
 
@@ -107,13 +105,13 @@ function runDataSimulation() {
 
     while (i < 100) {
         i++
-        let corX = Math.random() *72 +25
-        let corY = Math.random() *90 + 4
+        let corX = Math.random() *99
+        let corY = Math.random() *99
 
         corArray.forEach((item) => {
             if (item[0]== corX && item[1] == corY) {
-                corX = Math.random() *72 +25
-                corY = Math.random() *90 + 4
+                corX = Math.random() *99
+                corY = Math.random() *99
             }
         });
 
@@ -156,11 +154,11 @@ function doMove() {
                 if (doesMove == 1) {
                     if(corArray[number][1] + Ymove < 1) {
                         Ymove = Math.floor(Math.random()*5)
-                    } else if(corArray[number][1] + Ymove > 94) {
+                    } else if(corArray[number][1] + Ymove > 99) {
                         Ymove = Math.floor(Math.random()*5-5)
                     }
 
-                    if(corArray[number][0] + Xmove < 25) {
+                    if(corArray[number][0] + Xmove < 1) {
                         Xmove = Math.floor(Math.random()*5)
                     } else if(corArray[number][0] + Xmove > 99) {
                         Xmove = Math.floor(Math.random()*5-5)
